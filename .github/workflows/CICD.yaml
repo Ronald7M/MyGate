@@ -1,0 +1,48 @@
+name: CI/CD Deployment
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Build Docker image
+      - name: Build Docker Image
+        run: |
+          cd GateFront
+          docker build -t frontendGate .
+
+      # Save Docker image as a tarball
+      - name: Save Docker Image
+        run: |
+          docker save frontendGate | gzip > frontendGate.tar.gz
+
+      # Upload Docker image to the server
+      - name: Upload Docker Image to Server
+        run: |
+          mkdir -p ~/.ssh
+          echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+          sudo apt-get update && sudo apt-get install -y sshpass
+          sshpass -p "${{ secrets.SERVER_PASS }}" scp frontendGate.tar.gz ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
+
+      # Deploy the Docker container on the server
+      - name: Deploy Docker Container
+        run: |
+          sshpass -p "${{ secrets.SERVER_PASS }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+            docker load < /tmp/frontendGate.tar.gz &&
+            docker stop frontendGate || true &&
+            docker rm frontendGate || true &&
+            docker run -d --name frontendGate -p 81:8081 frontendGate &&
+            rm /tmp/frontendGate.tar.gz
+          "
