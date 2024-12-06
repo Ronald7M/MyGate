@@ -1,0 +1,86 @@
+
+
+@if(true){
+@if (step===1){
+<div class="content">
+
+  <div class="img-container">
+    <p-button class="but-setting"  icon="pi pi-cog" [rounded]="true" (onClick)="onLongPress()" ></p-button>
+    @if (!checked){
+    @if (getResponse===true){
+      <img src="door_open.png" alt="Imaginea lipseste" class="responsive-image" />
+    }
+    @if (getResponse===false){
+      <img src="door_close.png" alt="Imaginea lipseste" class="responsive-image" />
+    }
+    @if (getResponse===undefined){
+      <img src="conexiune_nereusita.png" alt="Imaginea lipseste" class="responsive-image" />
+    }
+    } @else {
+      <div class="css-poarta">
+        <gate-sliding />
+      </div>
+    }
+  </div>
+  <p-button  [rounded]="true"  (onClick)="onClick()  ">
+    @if (wait){
+      <i class="pi pi-spin pi-spinner" style="font-size: 4rem"></i>
+    }@else{
+      <i class="pi pi-power-off" style="font-size: 4rem"></i>
+    }
+
+  </p-button>
+
+
+  @if (history.length!==0){
+
+  <div class="table-end">
+  <p-table [value]="history" class="custom-table" [tableStyle]="{ 'max-width': '90vw' }">
+    <ng-template pTemplate="header">
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+
+
+      @if(item.action=="DESCHIDERE"){
+        <tr style="background: #fa9372;">
+          <td>{{ item.name }}</td>
+          <td>{{ item.action }}</td>
+          <td>{{ item.date | date:' MMM dd yyyy HH:mm:ss ' }}</td>
+        </tr>
+      } @else {
+        <tr style="background: #00ff87;">
+          <td>{{ item.name }}</td>
+          <td>{{ item.action }}</td>
+          <td>{{ item.date | date:' MMM dd yyyy HH:mm:ss ' }}</td>
+        </tr>
+      }
+    </ng-template>
+  </p-table>
+    </div>}
+</div>
+}
+@if (step===0){
+  <div class="card flex justify-content-center">
+    <input type="text" pInputText [(ngModel)]="inputValue"/>
+    <p-button label="Submit" (onClick)="getAuth(inputValue)"/>
+  </div>
+  <div class="card flex justify-content-center">
+    <p-toggleButton
+      [(ngModel)]="checked"
+      onLabel="Animatie"
+      offLabel="Normal"
+      styleClass="w-9rem"
+      ariaLabel="Do you confirm" />
+  </div>
+  <div class="card flex justify-content-center">
+    <p-button label="Submit" (onClick)="saveTokenPoarta()"/>
+  </div>
+}
+}
+
+
+
+
+
+
+

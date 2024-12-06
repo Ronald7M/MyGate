@@ -1,0 +1,89 @@
+.background-container {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  overflow: hidden;
+  z-index: 0; /* Z-index-ul containerului */
+}
+
+.background-image {
+  left:0;
+  position: absolute; /* Poziționare absolută pentru a ocupa întregul container */
+  width: 100%; /* Face imaginea să ocupe întreaga lățime a containerului */
+  height: 100%; /* Face imaginea să ocupe întreaga înălțime a containerului */
+  object-fit: fill; /* Acoperă complet containerul */
+  z-index: 2; /* Imaginea de fundal deasupra imaginii care se mișcă */
+}
+
+.moving-image {
+  position: absolute;
+ // transform: translateX(70%);
+  top: 15%;
+  width: 50%;
+  height: 85%;
+  object-fit: fill;
+  z-index: 1; /* Imaginea care se mișcă dedesubt */
+}
+.car {
+  position: absolute;
+  // transform: translateX(70%);
+  top: -20%;
+  left: 53%;
+  width: 35%;
+  height: auto;
+  object-fit: fill;
+  opacity: .45;
+  z-index: 0; /* Imaginea care se mișcă dedesubt */
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0.4; /* Începe complet transparent */
+  }
+  100% {
+    opacity: 1; /* Sfârșește complet opac */
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1; /* Începe complet transparent */
+  }
+  100% {
+    opacity: 0.4; /* Sfârșește complet opac */
+  }
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(-90%);
+  }
+  100% {
+    transform: translateX(-20%); /* Mutare 200px spre dreapta */
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(-20%);
+  }
+  100% {
+    transform: translateX(-90%); /* Mutare 200px spre dreapta */
+  }
+}
+
+/* Clasa pentru animare la dreapta */
+.moving-right {
+  animation: moveRight 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+/* Clasa pentru animare la stânga */
+.moving-left {
+  animation: moveLeft 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+.opac-animation {
+  animation: fadeIn 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+.opac-out-animation {
+  animation: fadeOut 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+

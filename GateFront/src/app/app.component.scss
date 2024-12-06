@@ -1,0 +1,7 @@
+.container {
+  display: flex;                   /* Activează Flexbox */
+  justify-content: center;         /* Centrează pe orizontală */
+  align-items: center;             /* Centrează pe verticală */
+  //height: 100vh;                  /* Setează înălțimea containerului la 100% din înălțimea ferestrei */
+  background-color: #f0f0f0;      /* Fundal deschis pentru contrast */
+}

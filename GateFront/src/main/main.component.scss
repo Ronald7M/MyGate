@@ -1,0 +1,68 @@
+.but-setting{
+  
+  top: 3%; /* Se poziționează la 10px de partea de sus */
+  left: 7%; /* Se poziționează la 10px de partea stângă */
+  position: absolute;
+}
+::ng-deep .but-setting .p-button {
+  background-color: rgba(0, 0, 0, 0) !important; /* Culoarea dorită */
+  color: white;
+  border: none;
+}
+::ng-deep .but-setting .p-button-icon {
+  color: #4e4d49 !important; /* Culoarea dorită */
+  font-size: 30px; 
+}
+.img-container {
+  display: flex; /* Folosește flexbox pentru a centra imaginea */
+  justify-content: center; /* Centrează imaginea pe orizontală */
+  align-items: center; /* Centrează imaginea pe verticală */
+  margin-bottom: 10px; /* Margine pentru a adăuga spațiu în jurul containerului */
+  padding-bottom: 10px; /* Padding pentru a adăuga spațiu în interiorul containerului */
+
+  height:15vh;
+  overflow: hidden;
+  margin-top:50px;
+}
+
+.responsive-image {
+  width: 100%; /* Face imaginea să ocupe lățimea containerului */
+  max-width: 300px; /* Limitează lățimea maximă a imaginii */
+  height: auto; /* Menține raportul de aspect al imaginii */
+  border-radius: 10px; /* Răspunde colțurile imaginii */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adaugă o umbră subtire */
+
+}
+.content {
+  text-align: center;              /* Centrează textul în interiorul div-ului */
+  padding: 20px;
+  border: 2px solid #007bff;      /* Bordură pentru a evidenția div-ul */
+  border-radius: 8px;             /* Colțuri rotunjite */
+  background-color: white;         /* Fundal alb pentru conținut */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Umbra pentru a da profunzime */
+  width:90vw;
+  max-height:100%;
+}
+
+.css-poarta{
+  padding:0;
+  margin:0;
+  width:100%;
+  height:100%;
+//  transform: scaleX(-1); /* Oglindire pe axa X */
+}
+
+.custom-table td {
+  font-size: 12px; /* Modifică dimensiunea textului */
+  padding: 3px;   /* Modifică padding-ul celulelor */
+}
+
+.table-end{
+  margin:3vh;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 2px solid #9ffd00;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+
